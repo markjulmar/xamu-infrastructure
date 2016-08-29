@@ -1,3 +1,3 @@
-This is a set of classes which are used in various Xamarin University labs.
+## Moved to <https://github.com/xamarinhq/xamu-infrastructure>
 
-To avoid duplication, and to allow for updates, we are publishing these as an open source library.
+### Please use that version going forward.
