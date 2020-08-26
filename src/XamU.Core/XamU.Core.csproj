@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+
+  <PropertyGroup>
+    <TargetFrameworks></TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid71;uap10.0.16299</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid71;</TargetFrameworks>    
+    <Version>2.2.0</Version>
+    <PackageTitle>XamarinUniversity.Core</PackageTitle>
+    <Title>Xamarin University Core Library</Title>
+    <Authors>Microsoft, Xamarin University</Authors>
+    <Product>Xamarin University Core Library</Product>
+    <PackageId>XamarinUniversity.Core</PackageId>
+    <PackageLicenseUrl>https://github.com/xamarinhq/xamu-infrastructure/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/xamarinhq/xamu-infrastructure</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/xamarinhq/xamu-infrastructure/master/logo.png</PackageIconUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>This library provides a set of .NET classes for XAML based MVVM development.</Description>
+    <Summary>MVVM Core library for XAML development</Summary>
+    <PackageReleaseNotes>https://github.com/xamarinhq/xamu-infrastructure/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/xamarinhq/xamu-infrastructure</RepositoryUrl>
+    <PackageTags>mvvm;ios;xamarin;android;winphone;uwp;windows;wpf;macos</PackageTags>
+    <RootNamespace>XamU.Core</RootNamespace>
+    <Company>Microsoft, Xamarin University</Company>
+    <Copyright>Copyright (C) 2017-2018 Microsoft, Xamarin University</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>2.2.0.0</AssemblyVersion>
+    <FileVersion>2.2.0.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
+    <DebugType>pdbonly</DebugType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <DefineConstants>$(DefineConstants);PLATFORM_ANDROID</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" $(TargetFramework.StartsWith('Xamarin.Mac')) ">
+    <DefineConstants>$(DefineConstants);PLATFORM_MAC</DefineConstants>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+    <DefineConstants>$(DefineConstants);PLATFORM_IOS</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+  	<PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('uap10.0')) ">
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.0.8" />
+    <SDKReference Include="WindowsMobile, Version=10.0.16299.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+
+</Project>
